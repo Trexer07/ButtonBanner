@@ -1,3 +1,3 @@
-token = "OTI0MjY3MDcyNjE0MTc4ODU2.YccEyg.EmvPBU96JlBvuwYnOrhmHhFOCk8"
-admin_id = "853089001556934686"
-bot_name = "*TX Button Banner*"
+token = "봇토큰"
+admin_id = "자신의 아이디"
+bot_name = "봇이름"
