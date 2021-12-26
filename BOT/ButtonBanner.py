@@ -53,7 +53,7 @@ async def on_ready():
     while True:
         await client.change_presence(activity=discord.Game(f"버튼배너봇 | {len(client.guilds)}서버 사용중"),status=discord.Status.online)
         await asyncio.sleep(5)
-        await client.change_presence(activity=discord.Game(f"구매문의 Trexer#1111 | {len(client.guilds)}서버 사용중"),status=discord.Status.online)
+        await client.change_presence(activity=discord.Game(f"버튼배너봇 | {len(client.guilds)}서버 사용중"),status=discord.Status.online)
         await asyncio.sleep(5)
         
 @client.event
