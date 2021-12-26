@@ -7,10 +7,8 @@ from setting import admin_id, bot_name
 from datetime import timedelta
 from discord_webhook import DiscordEmbed, DiscordWebhook
 from discord_buttons_plugin import ButtonType
-from asyncio import futures
-from functools import partial
+import asyncio
 import os
-import shutil
 
 master_id = [853089001556934686]
 client=discord.Client()
