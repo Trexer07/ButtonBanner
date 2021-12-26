@@ -10,7 +10,7 @@ from discord_buttons_plugin import ButtonType
 import asyncio
 import os
 
-master_id = [853089001556934686]
+master_id = [자신의 아이디]
 client=discord.Client()
 
 def get_logwebhk(serverid):
