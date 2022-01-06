@@ -334,7 +334,9 @@ async def on_button_click(interaction):
         cur = con.cursor()
         cur.execute("SELECT * FROM serverinfo")
         server_info =  cur.fetchone()
-        ch = client.get_channel(f"{serverinfo[]}")
+        ch = client.get_channel(f"{serverinfo[5]}")
+        await ch.send(f"{webhookcheck}". embed=discord.Embed(title="배너 자동개설",description=f"{nameapplication} 의 웹훅 {webhookcheck}" )
+                                 
                             
 
             
