@@ -103,6 +103,23 @@ async def on_message(message):
                     await message.channel.send("**라이센스 검색 결과**\n기간단위 : " + str(search_result[1]) + " 일\n사용 여부 : 사용되지 않음")
             else:
                 await message.channel.send("라이센스 검색 실패 : 그 라이센스가 없음.")
+    
+    if message.content == "!데이터삭제":
+        if message.author.id == int(admin_id):
+            dbd_em = await message.channel.send(embed=discord.Embed(title="데이터 베이스 삭제",description=str(message.guild.id) +"서버의 데이터를 삭제하시겠습니까?\n네, 아니요로만 답해주세요.", color=0x5c6cdf))
+            def check(dbd):
+                return (dbd.author.id == message.user.id and isinstance(dbd.channel))
+            dbd = await client.wait_for("message", timeout=60, check=check)
+            dbd = dbd.content
+            dbd = "네"
+            await os.delete("../DB/" + str(message.guild.id) + ".db")
+            await message.channel.send(embed=discord.Embed(description="성공적으로 " + str(message.guild.id) + "의 데이터를 삭제하였습니다.",color=0x5c6cdf))
+        else:
+            dbd = "아니요"
+            await dbd_em.adit(content = embed=discord.Embed(description = str(message.guild.id) + "의 데이터삭제를 취소하였습니다.",color=0x5c6cdf))
+
+            
+           
 
     if message.author.id in master_id:
         if (message.content.startswith("!삭제 ")):
@@ -334,8 +351,13 @@ async def on_button_click(interaction):
         cur = con.cursor()
         cur.execute("SELECT * FROM serverinfo")
         server_info =  cur.fetchone()
+        con.close()
         ch = client.get_channel(f"{serverinfo[5]}")
-        await ch.send(f"{webhookcheck}". embed=discord.Embed(title="배너 자동개설",description=f"{nameapplication} 의 웹훅 {webhookcheck}" )
+        await ch.send(f"{webhookcheck}". embed=discord.Embed(title="배너 자동개설",description=f"{nameapplication} 의 웹훅 {webhookcheck}",color=0x5c6cdf))
+                                    
+                                    
+    
+        
                                  
                             
 
