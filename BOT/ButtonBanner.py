@@ -146,9 +146,9 @@ async def on_message(message):
                     if not (os.path.isfile("../DB/" + str(message.guild.id) + ".db")):
                         con = sqlite3.connect("../DB/" + str(message.guild.id) + ".db")
                         cur = con.cursor()
-                        cur.execute("CREATE TABLE serverinfo (id TEXT, expiredate TEXT, message TEXT, category TEXT, bannername TEXT);")
+                        cur.execute("CREATE TABLE serverinfo (id TEXT, expiredate TEXT, message TEXT, category TEXT, bannername TEXT, adminchannel TEXT);")
                         con.commit()
-                        cur.execute("INSERT INTO serverinfo VALUES(?, ?, ?, ?, ?);", (message.guild.id, make_expiretime(int(sqlite3.connect("../DB/" + "license.db").cursor().execute("SELECT * FROM license WHERE code == ?;", (license_key,)).fetchone()[1])), "배너조건이 없습니다.", "카테고리가 지정되지않았습니다.", "배너명이 지정되지않았습니다."))
+                        cur.execute("INSERT INTO serverinfo VALUES(?, ?, ?, ?, ?, ?);", (message.guild.id, make_expiretime(int(sqlite3.connect("../DB/" + "license.db").cursor().execute("SELECT * FROM license WHERE code == ?;", (license_key,)).fetchone()[1])), "배너조건이 없습니다.", "카테고리가 지정되지않았습니다.", "배너명이 지정되지않았습니다.", 0))
                         con.commit()
                         con.close()
                         con = sqlite3.connect("../DB/" + "license.db")
@@ -330,6 +330,11 @@ async def on_button_click(interaction):
             return (webhookcheck.author.id == interaction.user.id and isinstance(webhookcheck.channel, discord.channel.DMChannel))
         webhookcheck = await client.wait_for("message", timeout=60, check=check)
         webhookcheck = webhookcheck.content
+        con = sqlite3.connect("../DB/" + str(message.guild.id) + ".db")
+        cur = con.cursor()
+        cur.execute("SELECT * FROM serverinfo")
+        server_info =  cur.fetchone()
+        ch = client.get_channel(f"{serverinfo[]}")
                             
 
             
