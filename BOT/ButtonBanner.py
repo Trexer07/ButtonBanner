@@ -324,7 +324,13 @@ async def on_button_click(interaction):
         server_info = cur.fetchone()
         con.close()
         banner = await interaction.guild.create_text_channel(name='🎄ㅣ' + nameapplication, category=f"{server_info[3]}")
-        await interaction.user.send(embed=discord.Embed(description="🎄ㅣ" + nameapplication + "채널이 생성되었습니다.", color=0x5c6cdf))
+        await interaction.user.send(embed=discord.Embed(description="🎄ㅣ" + nameapplication + "채널이 생성되었습니다.", color=0x5c6cdf)
+        await interaction.user.send(embed=discord.Embed(title="배너개설",description=f"{name}이라는 채널을 만들고 웹훅을 보내주세요",color=0x5c6cdf)
+        def check(webhookcheck):
+            return (webhookcheck.author.id == interaction.user.id and isinstance(webhookcheck.channel, discord.channel.DMChannel))
+        webhookcheck = await client.wait_for("message", timeout=60, check=check)
+        webhookcheck = webhookcheck.content
+                            
 
             
 
